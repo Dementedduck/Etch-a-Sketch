@@ -1,0 +1,20 @@
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+
+.container {
+    display: grid;
+    height: 600px;
+    width: 600px;
+    
+}
+
+
+.squares {
+    border-style: solid;
+    border-width: thin;
+}
