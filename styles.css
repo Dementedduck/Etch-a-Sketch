@@ -6,6 +6,21 @@ body {
 }
 
 
+.buttons {
+    display: flex;
+    gap: 80px;
+    padding: 10px;
+}
+
+.size,
+.colour,
+.precision,
+.clear {
+    padding:10px
+}
+
+
+
 .container {
     display: grid;
     height: 600px;
@@ -14,7 +29,7 @@ body {
 }
 
 
-.squares {
+.container div {
     border-style: solid;
     border-width: thin;
 }
