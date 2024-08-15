@@ -2,7 +2,8 @@ let colour = "black";
 
 const sizeButton = document.querySelector(".size");
 const colourButton = document.querySelector(".colour");
-const precisionButton = document.querySelector(".precision");
+const clickPrecisionButton = document.querySelector(".clickPrecision");
+const mousePrecisionButton = document.querySelector(".mousePrecision")
 const clearButton = document.querySelector(".clear");
 const container = document.querySelector(".container");
 function create(size) {
@@ -17,6 +18,7 @@ function create(size) {
     let divs = document.createElement("div");
     divs.addEventListener("mouseover", colourSquare);
     container.insertAdjacentElement("beforeend", divs);
+    divs.className = "squares";
   }
 }
 
@@ -35,6 +37,8 @@ function changeSize(input) {
     alert("Input a valid number!");
   }
 }
+
+
 
 function colourSquare() {
   this.style.backgroundColor = colour;
@@ -61,3 +65,19 @@ sizeButton.addEventListener("click", function () {
 clearButton.addEventListener("click", function () {
   clear();
 });
+
+clickPrecisionButton.addEventListener("click", function () {
+  let squares = container.querySelectorAll(".squares");
+  squares.forEach((square) => {
+    square.removeEventListener("mouseover", colourSquare);
+    square.addEventListener("click", colourSquare);
+  });
+});
+
+mousePrecisionButton.addEventListener("click", function() {
+  let squares = container.querySelectorAll(".squares");
+  squares.forEach((square) => {
+    square.removeEventListener("click", colourSquare);
+    square.addEventListener("mouseover", colourSquare);
+  });
+})
