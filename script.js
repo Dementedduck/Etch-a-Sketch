@@ -3,7 +3,7 @@ let colour = "black";
 const sizeButton = document.querySelector(".size");
 const colourButton = document.querySelector(".colour");
 const clickPrecisionButton = document.querySelector(".clickPrecision");
-const mousePrecisionButton = document.querySelector(".mousePrecision")
+const mousePrecisionButton = document.querySelector(".mousePrecision");
 const clearButton = document.querySelector(".clear");
 const container = document.querySelector(".container");
 function create(size) {
@@ -23,11 +23,16 @@ function create(size) {
 }
 
 create(16);
+mousePrecisionButton.style.backgroundColor = "#89b6fe";
 
 function clear() {
   let allSquares = container.querySelectorAll("div");
   allSquares.forEach((div) => div.remove());
   create(16);
+  mousePrecisionButton.style.backgroundColor = "#89b6fe";
+  mousePrecisionButton.style.transition = "all 1s";
+  clickPrecisionButton.style.backgroundColor = "";
+  clickPrecisionButton.style.transition = "all 1s";
 }
 
 function changeSize(input) {
@@ -38,8 +43,6 @@ function changeSize(input) {
   }
 }
 
-
-
 function colourSquare() {
   this.style.backgroundColor = colour;
 }
@@ -47,6 +50,15 @@ function colourSquare() {
 function chooseColour(input) {
   colour = input;
 }
+
+colourButton.addEventListener("mouseenter", function() {
+  colourButton.style.border = "solid";
+  colourButton.style.transition = "all 0.1s"
+})
+
+colourButton.addEventListener("mouseout", function() {
+  colourButton.style.border = "";
+})
 
 colourButton.addEventListener("click", function () {
   let answer = prompt(
@@ -66,18 +78,54 @@ clearButton.addEventListener("click", function () {
   clear();
 });
 
+clearButton.addEventListener("mouseenter", function () {
+  clearButton.style.backgroundColor = "#ff4b4f";
+  clearButton.style.transition = "all 1s";
+});
+
+clearButton.addEventListener("mouseout", function () {
+  clearButton.style.backgroundColor = "";
+  clearButton.style.transition = "all 1s";
+});
+
 clickPrecisionButton.addEventListener("click", function () {
   let squares = container.querySelectorAll(".squares");
   squares.forEach((square) => {
     square.removeEventListener("mouseover", colourSquare);
     square.addEventListener("click", colourSquare);
   });
+  clickPrecisionButton.style.backgroundColor = "#89b6fe";
+  clickPrecisionButton.style.transition = "all 1s";
+  mousePrecisionButton.style.backgroundColor = "";
+  mousePrecisionButton.style.transition = "all 1s";
 });
 
-mousePrecisionButton.addEventListener("click", function() {
+clickPrecisionButton.addEventListener("mouseenter", function () {
+  clickPrecisionButton.style.border = "solid";
+  clickPrecisionButton.style.transition = "all 0.1s";
+});
+
+clickPrecisionButton.addEventListener("mouseout", function () {
+  clickPrecisionButton.style.border = "none";
+});
+
+mousePrecisionButton.addEventListener("mouseenter", function () {
+  mousePrecisionButton.style.border = "solid";
+  mousePrecisionButton.style.transition = "all 0.1s";
+});
+
+mousePrecisionButton.addEventListener("mouseout", function () {
+  mousePrecisionButton.style.border = "none";
+});
+
+mousePrecisionButton.addEventListener("click", function () {
   let squares = container.querySelectorAll(".squares");
   squares.forEach((square) => {
     square.removeEventListener("click", colourSquare);
     square.addEventListener("mouseover", colourSquare);
   });
-})
+  mousePrecisionButton.style.backgroundColor = "#89b6fe";
+  mousePrecisionButton.style.transition = "all 1s";
+  clickPrecisionButton.style.backgroundColor = "";
+  clickPrecisionButton.style.transition = "all 1s";
+});
